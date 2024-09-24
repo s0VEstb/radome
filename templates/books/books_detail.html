@@ -1,0 +1,33 @@
+{% extends 'components/navbar.html' %}
+{% load static %}
+{% block content %}
+    <h3>Book image:</h3>
+    {% if book.image %}
+        <img src="/media/{{ book.image }}" width="300">
+    {% else %}
+        <img src="{% static 'not_found.jpg' %}" width="300">
+    {% endif %}
+<h3>Book name:</h3>
+    {{ book.title }}
+<h3>Book description:</h3>
+    {{ book.description }}
+<h3>Book price:</h3>
+    {{ book.price }}
+
+<h3>Book genre:</h3>
+    {{ book.genre }}
+<h3>Book created_at:</h3>
+    {{ book.created_at }}
+
+<h3>Book author:</h3>
+    {{ book.author }}
+<h3>Book publisher_email:</h3>
+    {{ book.publisher_email }}
+<h3>Book is_bestseller:</h3>
+    {{ book.is_bestseller }}
+    
+     Update: <a href="/books/books_list/{{ book.id }}/update/">Update</a>
+    Delete: <a href="/books/books_list/{{ book.id }}/delete/">Delete</a>
+    
+    
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'components/navbar.html' %}
+{% block content %}
+<div class="container">
+    <h2>Clothes for Kids:</h2>
+    <div class="card-container">
+            {% for cloth in kids_cloth %}
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ cloth.image.url }}" class="card-img-top" alt="{{ cloth.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ cloth.name }}</h5>
+                        <p><strong>Tags:</strong></p>
+                        <ul>
+                            {% for tag in clothes.tags.all %}
+                                <li>{{ tag.name }}</li>
+                            {% empty %}
+                                <li>No tags available</li>
+                            {% endfor %}
+                        </ul>
+                        <p class="card-text">{{ cloth.price }}</p>
+                        <a href="/cloth/{{ cloth.id }}" class="btn btn-primary">See more</a>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+
+    <h2>Clothes for Adults:</h2>
+    <div class="card-container">
+            {% for cloth in adults_cloth %}
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ cloth.image.url }}" class="card-img-top" alt="{{ cloth.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ cloth.name }}
+                        </h5><p><strong>Tags:</strong></p>
+                        <ul>
+                            {% for tag in cloth.tags.all %}
+                                <li>{{ tag.name }}</li>
+                            {% empty %}
+                                <li>No tags available</li>
+                            {% endfor %}
+                        </ul>
+                        <p class="card-text">{{ cloth.price }}</p>
+                        <a href="/cloth/{{ cloth.id }}" class="btn btn-primary">See more</a>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+
+    <h2>Clothes for Pensioners:</h2>
+            {% for cloth in pensioners_cloth %}
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ cloth.image.url }}" class="card-img-top" alt="{{ cloth.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ cloth.name }}</h5>
+                     <p><strong>Tags:</strong></p>
+                        <ul>
+                            {% for tag in cloth.tags.all %}
+                                <li>{{ tag.name }}</li>
+                            {% empty %}
+                                <li>No tags available</li>
+                            {% endfor %}
+                        </ul>
+                        <p class="card-text">{{ cloth.price }}</p>
+                        <a href="/cloth/{{ cloth.id }}" class="btn btn-primary">See more</a>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}

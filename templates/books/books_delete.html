@@ -1,0 +1,15 @@
+{% extends 'components/navbar.html' %}
+{% load static %}
+{% block content %}
+    
+<form method="POST" enctype="multipart/form-data">
+    <h1>Вы точно хотите удалить эту книгу</h1>
+    {% csrf_token %}
+    <button type="submit">ДА</button>
+    <button>
+        <a href="{% url 'books_detail' book.id %}">Назад</a>
+    </button>
+</form>
+
+    
+{% endblock %}

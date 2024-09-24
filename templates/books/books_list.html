@@ -1,0 +1,49 @@
+{% extends 'components/navbar.html' %}
+{% load static %}
+{% block content %}
+<body>
+
+<form method="GET" action="{% url 'books_list' %}">
+    <input type="text" name="q" placeholder="Поиск книг..." value="{{ query }}">
+    <button type="submit">Поиск</button>
+</form>
+
+<h3>Book list:</h3>
+
+    <div class="card-container">
+        {% for book in books %}
+    <div class="card" style="width: 18rem;">
+            {% if book.image %}
+                <img src="{{ book.image.url }}" class="card-img-top" alt="Image not found">
+            {% else %}
+    <img src="{% static 'not_found.jpg' %}" class="card-img-top" alt="Image not found">
+    {% endif %}
+        
+  <div class="card-body">
+    <h5 class="card-title">{{ book.title }}</h5>
+    <p class="card-text">{{ book.description }}</p>
+    <p class="card-text">{{ book.price }}</p>
+    <a href="/books/books_list/{{ book.id }}" class="btn btn-primary">See more</a>
+  </div>
+</div>
+        {% endfor %}
+    </div>
+</body>
+    
+    <style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-left: 50px;
+        margin-top: 50px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+        flex: 0 0 calc(28% - 30px);
+    }
+</style>
+    
+
+{% endblock %}  
